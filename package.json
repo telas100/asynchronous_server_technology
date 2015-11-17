@@ -1,5 +1,24 @@
-{ "name" : "work1"
-, "version" : "3.3.6"
-, "description" : "First work"
-, "dependencies" : ""
-, "devDependencies" : ""}
+{
+  "name": "work1",
+  "version": "3.3.6",
+  "description": "First work",
+  "main": "index.js",
+  "scripts": {
+    "test": "bash bin/test",
+    "start" : "bash bin/start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/telas100/asynchronous_server_technology.git"
+  },
+  "author": "telas100",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/telas100/asynchronous_server_technology/issues"
+  },
+  "homepage": "https://github.com/telas100/asynchronous_server_technology#readme",
+  "devDependencies": {
+    "mocha": "^2.3.4",
+    "should": "^7.1.1"
+  }
+}

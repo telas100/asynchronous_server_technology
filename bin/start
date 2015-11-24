@@ -1,2 +1,2 @@
 #!/bin/bash
-node ./lib/app.js
+coffee ./lib/app.coffee

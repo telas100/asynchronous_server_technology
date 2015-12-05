@@ -1,5 +1,5 @@
 should = require 'should'
-users = require '../../lib/users'
+users = require '../../src/users'
 
 describe 'Save Function Unit Tests', () ->
    it 'Should return the saved name', () ->

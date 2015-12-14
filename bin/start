@@ -1,2 +1,2 @@
 #!/bin/bash
-coffee ./src/app.coffee
+stylus ./public/style/*.styl  && nodemon ./src/app.coffee

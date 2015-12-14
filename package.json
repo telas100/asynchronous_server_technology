@@ -1,8 +1,8 @@
 {
-  "name": "work1",
+  "name": "Asynchronous Server Technology Project",
   "version": "3.3.6",
-  "description": "First work",
-  "main": "index.js",
+  "description": "Work on the asynchronous server technology course at the ECE Paris.",
+  "main": "./bin/app.coffee",
   "scripts": {
     "test": "bash bin/test",
     "start": "bash bin/start",

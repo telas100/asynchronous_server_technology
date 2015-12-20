@@ -79,19 +79,27 @@ app.get '/delete', authCheck, (req, res) ->
 app.get '/metrics.json', authCheck, (req, res) ->
    res.status(200).json metrics.getAll()
 
-app.get '/metric/:user.user.json', authCheck, (req, res) ->
+app.get '/user/metrics/:user.json', authCheck, (req, res) ->
    metrics.getByUser req.session.username, (err, reply, sized) ->
       if sized
          res.status(200).json reply
    
-app.get '/metric/:key.key.json', authCheck, (req, res) ->
+app.get '/metric/get/:key.json', authCheck, (req, res) ->
    metrics.getByKey req.params.key, (reply) ->
       res.status(200).json reply
 
-app.post '/metric/:id.json', authCheck, (req, res) ->
+app.post '/metric/set/:id.json', authCheck, (req, res) ->
    metrics.save req.params.id, req.body, (err) ->
       if err then res.status(500).json err
       else res.status(200).send "Metrics saved"
+      
+app.get '/metric/del/:key.json', authCheck, (req, res) ->
+   if key.split(':')[1]==req.session.username
+      metrics.remove req.params.key, (err) ->
+         if err then res.status(500).json err
+         else res.status(200).send "Metrics deleted"
+   else
+      res.status(200).send "Metric does not belong to your username"
 
 app.listen app.get('port'), () ->
    console.log "listening on #{app.get 'port'}"

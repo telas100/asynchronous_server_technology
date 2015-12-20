@@ -36,7 +36,6 @@ module.exports =
    remove: (username, callback) -> 
       client = redis.createClient()
       client.on 'error', callback
-      console.log "users:#{username}"
       client.del "users:#{username}", (err, reply) ->
          client.quit()
          if err

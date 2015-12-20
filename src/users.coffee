@@ -28,13 +28,15 @@ module.exports =
          client.quit()
          if (err)
             console.log err
+            callback err, false
          else
             console.log "User saved !"
-            callback "users:#{username}:#{name}:#{email}"
+            callback false,"users:#{username}:#{name}:#{email}"
 
    remove: (username, callback) -> 
       client = redis.createClient()
       client.on 'error', callback
+      console.log "users:#{username}"
       client.del "users:#{username}", (err, reply) ->
          client.quit()
          if err

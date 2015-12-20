@@ -9,4 +9,7 @@ html
    body   
       block content
       block footer
-         button.btn.btn-danger(href='/logout' onClick='document.location.href="/logout"') Logout
+         hr
+         .container-fluid
+            button.btn.btn-info.col-md-offset-8.col-md-2(href='/delete' onClick='document.location.href="/delete"') Delete account
+            button.btn.btn-danger.col-md-offset-1.col-md-1(href='/logout' onClick='document.location.href="/logout"') Logout

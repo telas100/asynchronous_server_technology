@@ -59,6 +59,23 @@ app.get '/logout', (req, res) ->
 app.get '/signup', (req, res) ->
    res.render 'signup'
 
+app.post '/signup', (req, res) ->
+   if req.body.username
+      users.save req.body.username, req.body.password, req.body.email, req.body.name, (err, user) ->
+         return err if err
+         unless user != false
+            res.redirect '/signup'
+         else
+            req.session.loggedIn = true
+            req.session.username = req.body.username
+            res.redirect '/'
+   else
+      res.redirect '/signup'
+   
+app.get '/delete', authCheck, (req, res) ->
+   users.remove req.session.username, () ->
+   res.redirect '/logout'
+   
 app.get '/metrics.json', authCheck, (req, res) ->
    res.status(200).json metrics.getAll()
 

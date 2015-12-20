@@ -1,0 +1,24 @@
+extend layout
+
+block content
+   .container-fluid
+      h2 Please fill the form
+      hr
+      #form
+         form.col-md-8#login(action='/signup', method="post")
+            .form-group.row
+               label.col-md-4 Username
+               input.col-md-4(type='text', name="username")
+            .form-group.row
+               label.col-md-4 Name
+               input.col-md-4(type='text', name="name")
+            .form-group.row
+               label.col-md-4 Password
+               input.col-md-4(type='password', name="password")
+            .form-group.row
+               label.col-md-4 E-mail
+               input.col-md-4(type='text', name="name")
+            .form-group.row
+               button#register_submit.btn.btn-primary.btn-block(type='submit').col-md-offset-2.col-md-4 Register
+               
+block footer

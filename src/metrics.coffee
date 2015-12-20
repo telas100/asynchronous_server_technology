@@ -34,25 +34,43 @@ module.exports =
          value: 23
       ]
 
-   get: (key, callback) ->
+   getByKey: (key, callback) ->
       client = redis.createClient()
       client.on 'error', callback
       client.get key, (err, reply) ->
          client.quit()
          if err
             console.log err
+            callback err, null
          else
-            callback reply
+            callback err, reply
+            
+   getByUser: (user, callback) ->
+      client = redis.createClient()
+      client.on 'error', callback
+      client.keys "metrics:#{user}*", (err, keys) ->
+         if err
+            console.log err
+            callback err, null
+         else
+            i = 0
+            replies = []
+            for key in keys
+               i++
+               client.get key, (err, value) ->
+                  replies.push timestamp:parseInt(key.split(':')[3]), value:parseInt(value)
+                  if i == keys.length
+                     callback null, replies, replies.length==keys.length
       
    save: (id, metrics, callback)->
       client = redis.createClient()
       client.on 'error', callback
       for m in metrics
-         {timestamp, value} = m
-         client.set "metrics:#{id}:#{timestamp}", value
+         {username, timestamp, value} = m
+         client.set "metrics:#{username}:#{id}:#{timestamp}", value
       client.quit()
       console.log "Batch saved !"
-      callback "metrics:#{id}:#{timestamp}", value
+      callback "metrics:#{username}:#{id}:#{timestamp}", value
       
    remove: (key, callback) ->
       client = redis.createClient()

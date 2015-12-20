@@ -79,8 +79,13 @@ app.get '/delete', authCheck, (req, res) ->
 app.get '/metrics.json', authCheck, (req, res) ->
    res.status(200).json metrics.getAll()
 
-app.get '/metric/:key.json', authCheck, (req, res) ->
-   metrics.get req.params.key, (reply) ->
+app.get '/metric/:user.user.json', authCheck, (req, res) ->
+   metrics.getByUser req.session.username, (err, reply, sized) ->
+      if sized
+         res.status(200).json reply
+   
+app.get '/metric/:key.key.json', authCheck, (req, res) ->
+   metrics.getByKey req.params.key, (reply) ->
       res.status(200).json reply
 
 app.post '/metric/:id.json', authCheck, (req, res) ->

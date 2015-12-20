@@ -6,34 +6,44 @@ console.log 'Creating metrics'
 
 met = [
    [
+      username: "admin",
       timestamp: new Date('2015-12-01 10:30 UTC').getTime(),
       value: 26
    ,
+      username: "admin",
       timestamp: new Date('2015-12-01 10:35 UTC').getTime(),
       value: 23
    ,
+      username: "admin",
       timestamp: new Date('2015-12-01 10:40 UTC').getTime(),
       value: 25
    ,
+      username: "foo",
       timestamp: new Date('2015-12-01 10:45 UTC').getTime(),
       value: 22
    ,
+      username: "foo",
       timestamp: new Date('2015-12-01 10:50 UTC').getTime(),
       value: 21
    ],
    [
+      username: "admin",
       timestamp: new Date('2015-12-01 10:55 UTC').getTime(),
       value: 25
    ,
+      username: "foo",
       timestamp: new Date('2015-12-01 11:00 UTC').getTime(),
       value: 26
    ,
+      username: "foo",
       timestamp: new Date('2015-12-01 11:05 UTC').getTime(),
       value: 24
    ,
+      username: "foo",
       timestamp: new Date('2015-12-01 11:10 UTC').getTime(),
       value: 22
    ,
+      username: "foo",
       timestamp: new Date('2015-12-01 11:15 UTC').getTime(),
       value: 23
    ]
@@ -59,13 +69,14 @@ us = [
       email: "default@user.fr"   
    ]   
 ]
-
-for metric, index in met
-   console.log "Saving batch #{index + 1}"
-   metrics.save index + 1, metric, (err) ->
-      return err if err
       
 for user in us
    console.log "Saving user: "+user[0].username
    users.save user[0].username, user[0].password, user[0].name, user[0].email, (err) ->
+      return err if err
+      
+
+for metric, index in met
+   console.log "Saving batch #{index + 1}"
+   metrics.save index + 1, metric, (err) ->
       return err if err

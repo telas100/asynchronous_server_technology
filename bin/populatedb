@@ -1,45 +1,71 @@
 #!/bin/bash coffee
 
 metrics = require '../src/metrics'
-#user = require '../src/user'
+users = require '../src/users'
 console.log 'Creating metrics'
 
 met = [
-  [
-    timestamp: new Date('2015-12-01 10:30 UTC').getTime(),
-    value: 26
-  ,
-    timestamp: new Date('2015-12-01 10:35 UTC').getTime(),
-    value: 23
-  ,
-    timestamp: new Date('2015-12-01 10:40 UTC').getTime(),
-    value: 25
-  ,
-    timestamp: new Date('2015-12-01 10:45 UTC').getTime(),
-    value: 22
-  ,
-    timestamp: new Date('2015-12-01 10:50 UTC').getTime(),
-    value: 21
-  ],
-  [
-    timestamp: new Date('2015-12-01 10:55 UTC').getTime(),
-    value: 25
-  ,
-    timestamp: new Date('2015-12-01 11:00 UTC').getTime(),
-    value: 26
-  ,
-    timestamp: new Date('2015-12-01 11:05 UTC').getTime(),
-    value: 24
-  ,
-    timestamp: new Date('2015-12-01 11:10 UTC').getTime(),
-    value: 22
-  ,
-    timestamp: new Date('2015-12-01 11:15 UTC').getTime(),
-    value: 23
-  ]
+   [
+      timestamp: new Date('2015-12-01 10:30 UTC').getTime(),
+      value: 26
+   ,
+      timestamp: new Date('2015-12-01 10:35 UTC').getTime(),
+      value: 23
+   ,
+      timestamp: new Date('2015-12-01 10:40 UTC').getTime(),
+      value: 25
+   ,
+      timestamp: new Date('2015-12-01 10:45 UTC').getTime(),
+      value: 22
+   ,
+      timestamp: new Date('2015-12-01 10:50 UTC').getTime(),
+      value: 21
+   ],
+   [
+      timestamp: new Date('2015-12-01 10:55 UTC').getTime(),
+      value: 25
+   ,
+      timestamp: new Date('2015-12-01 11:00 UTC').getTime(),
+      value: 26
+   ,
+      timestamp: new Date('2015-12-01 11:05 UTC').getTime(),
+      value: 24
+   ,
+      timestamp: new Date('2015-12-01 11:10 UTC').getTime(),
+      value: 22
+   ,
+      timestamp: new Date('2015-12-01 11:15 UTC').getTime(),
+      value: 23
+   ]
+]
+
+us = [
+   [
+      username: "foo",
+      password: "bar",
+      name: "Foo Bar",
+      email: "foo@bar.fr"
+   ],
+   [
+      username: "admin",
+      password: "admin",
+      name: "Administrator",
+      email: "gg@wp.com"   
+   ],
+   [
+      username: "default",
+      password: "s3cr3t",
+      name: "Default User",
+      email: "default@user.fr"   
+   ]   
 ]
 
 for metric, index in met
    console.log "Saving batch #{index + 1}"
    metrics.save index + 1, metric, (err) ->
+      return err if err
+      
+for user in us
+   console.log "Saving user: "+user[0].username
+   users.save user[0].username, user[0].password, user[0].name, user[0].email, (err) ->
       return err if err

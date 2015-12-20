@@ -1,4 +1,4 @@
-# Projet Asynchronous Server Technology
+# Project Asynchronous Server Technology
 
 [![Build Status](https://travis-ci.org/docker-library/docs.svg?branch=master)](https://travis-ci.org/telas100/asynchronous_server_technology)
 
@@ -14,7 +14,7 @@ The base project was expected to use LevelDB as DBMS but due to the lack of supp
 
 ## Project setup
 
-git clone https://github.com/telas100/asynchronous_server_technology.git
+git clone https://github.com/telas100/asynchronous_server_technology.git && cd asynchronous_server_technology/
 
 npm install
 
@@ -24,6 +24,9 @@ npm run populatedb OR ./bin/populatedb
 
 ## Project scripts
 
-npm run start -> Run nodemon for the project
+npm run start => Run nodemon for the project
 
-npm run test  -> Run the unit test for the project
+npm run test  => Run the unit test for the project
+
+## Notes
+- For now, data is not serialized and is reset whenever the redis server is restarted

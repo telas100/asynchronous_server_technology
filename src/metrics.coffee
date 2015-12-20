@@ -37,7 +37,7 @@ module.exports =
    get: (key, callback) ->
       client = redis.createClient()
       client.on 'error', callback
-      reply = client.get key, (err, reply) ->
+      client.get key, (err, reply) ->
          client.quit()
          if err
             console.log err
@@ -57,5 +57,10 @@ module.exports =
    remove: (key, callback) ->
       client = redis.createClient()
       client.on 'error', callback
-      return client.unset key callback
+      client.del key (err, reply) ->
+         client.quit()
+         if err
+            console.log err
+         else
+            callback reply
       

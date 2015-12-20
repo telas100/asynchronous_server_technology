@@ -4,9 +4,9 @@
 
 ## Synopsis
 This is a NodeJS project required for the Asynchronous Server Technology course at the ECE Paris. The project is centered around managing a key-value database owning
-some metrics via requests from the client.
+some metrics. Those metrics can be accessed by the registered users by requesting the server.
 
-The base project was expected to use LevelDB as DBMS but due to the lack of support for the Windows environments, the Redis DBMS has been prefered to manage the metrics.
+NB: The base project was expected to use LevelDB as DBMS but due to the lack of support for the Windows environments, the Redis DBMS has been prefered to manage the metrics.
 
 ## Requirements
 - npm 3.3.6 or higher
@@ -20,7 +20,7 @@ npm install
 
 redis-server
 
-npm run populatedb OR ./bin/populatedb 
+npm run populatedb
 
 ## Project scripts
 
@@ -28,5 +28,8 @@ npm run start => Run nodemon for the project
 
 npm run test  => Run the unit test for the project
 
-## Notes
-- For now, data is not serialized and is reset whenever the redis server is restarted
+## Features
+- Server owning metrics
+- Client views
+- Create/Login/Logout/Delete user session
+- Get/Set/Delete metrics owned by user
